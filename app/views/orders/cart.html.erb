@@ -1,0 +1,7 @@
+<% if current_order.present? %>
+	<% current_order.order_items.each do |item| %>
+		<%= item.variant.product.name %>: <%= item.variant.size %> - <%= item.variant %>
+	<% end %>
+<% else %>
+No items found
+<% end %>

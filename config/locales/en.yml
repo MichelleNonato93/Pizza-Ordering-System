@@ -1,0 +1,16 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  views:
+    pagination:
+      first: "&nbsp;&nbsp;&nbsp;"
+      last: "&nbsp;&nbsp;&nbsp;&nbsp;"
+      previous: "&nbsp;&nbsp;&nbsp;"
+      next: "&nbsp;&nbsp;&nbsp;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: "Showing <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> results for \"%{searchtext}\""

@@ -1,0 +1,104 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ //= require foundation_and_overrides
+ */
+
+@import 'foundation-icons';
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700');
+$font-stack: 'IBM Plex Sans',sans-serif;
+
+a { color: #eb3e29;}
+.top-bar {
+    overflow: hidden;
+    height: 15%;
+    line-height: 45px;
+    padding: 1% 2% 8% 2%;
+    position: relative;
+    background: #000;
+    margin-bottom: 0;
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button) {
+    padding: 0 15px;
+    line-height: 45px;
+    color: #eb3e29;;
+    background: transparent;
+    font-size: 12pt;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+}
+
+.top-bar-section ul li {
+    background: transparent;
+    margin-top:5%;
+}
+
+button, .button {
+    font-family: 'IBM Plex Sans',sans-serif;
+    background-color: #eb3e29;
+    border-color: #eb3e29;
+    text-transform:uppercase;
+    font-weight:400;
+    font-size:10pt;
+}
+
+button:hover, .button:hover {background-color:  #9e2718;}
+
+a:hover {color:  #9e2718;}
+
+table thead tr th, table thead tr td {
+    padding: 0.2rem 0.625rem 0.2rem 0.625rem;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #eb3e29;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+}
+
+table {margin:2% 3%;}
+.columns.coll {padding:0;}
+
+.content_total {margin:3% 0 2% 0;}
+h5.h5_total {font-family: 'IBM Plex Sans',sans-serif;letter-spacing:0.065em;font-size:12pt;text-transform:uppercase;font-weight:700;color:#eb3e29;}
+
+footer {background-color:#333;padding:2% 0 1% 0;}
+footer p {color: #fff;letter-spacing:0.28em;font-weight:700;font-size:10pt;}
+
+    .top-bar-section li:not(.has-form) a:not(.button) {
+    background: transparent;
+}
+
+p.navbar-text.pull-right {
+    font-family: inherit;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    text-rendering: optimizeLegibility;
+    font-weight: 600;
+    text-transform: uppercase;
+    color:#fff;
+}
+
+p.navbar-text.pull-right a {color:#fff;}
+p.navbar-text.pull-right a:hover {color:#eb3e29;}
+p.navbar-text.pull-right:hover {background-color:transparent;}
+
+.top-bar-section li.active:not(.has-form) a:not(.button):hover {background-color:transparent;}
+.top-bar-section li:not(.has-form) a:not(.button):hover {background-color:transparent;}
+
+h2.log, h2.sign {text-transform:uppercase;    font-family: $font-stack;}
+
+.login_content, .signup_content {padding:5% 0;}

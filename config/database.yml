@@ -1,0 +1,8 @@
+development:
+  adapter: mysql2
+  database: mimopen
+  username: root
+  password: mimomimo
+  strict: false
+  pool: 5
+  timeout: 5000

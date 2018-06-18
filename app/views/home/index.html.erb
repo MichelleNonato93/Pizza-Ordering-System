@@ -1,0 +1,51 @@
+<section class="content_total">
+	<div class="row collapse">
+		<div class="columns large-3 small-3"><h5 class="h5_total">Total Purchase Order</h5></div>
+		<div class="columns large-3 small-3"><%= text_field_tag "running_total", "0", style: "font-size: 32px;" %></div>
+		<div class="columns large-4 small-3"><!-- --></div>
+		<div class="columns large-3 small-3"><%= link_to raw('<i class="fi fi-shopping-cart large"></i>') + " View Cart", cart_path %></div>
+	</div>
+
+</section>
+
+<% Product.group(:category).size.each do |category| %>
+	<table role="grid">
+	  <thead>
+	    <tr>
+	      <th scope="column" width="250"><b><%= category.first %></b></th>
+	      <th scope="column" width="100">10"</th>
+	      <th scope="column" width="100">14"</th>
+	      <th scope="column" width="100">18"</th>
+	      <th scope="column" width="100">Qty</th>
+	      <th scope="column" width="150">Sub Total</th>
+	      <th scope="column">Add</th>
+	      <th scope="column">Remove</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% Product.where(category: category.first).each do |product| %>
+			<tr>
+				<td><%= product.name %></td>
+				<% product.variants.each do |variant| %>
+					<td>
+						<%= radio_button_tag("item_#{product.id}", "#{variant.id}", options = {}) %>
+						<%= variant.price %>
+					</td>
+				<% end %>
+				<td><%= text_field_tag "qty_#{product.id}", "0", class: "qty" %></td>
+				<td><%= text_field_tag "subtotal_#{product.id}", "0", class: "subtotal" %></td>
+				<td><%= button_tag "Add" %></td>
+				<td><%= button_tag "Remove" %></td>
+			</tr>
+		<% end %>
+	  </tbody>
+	</table>
+<% end %>
+
+<% content_for(:js_footer) do %>
+	<script>
+		$(".qty").change(function(){
+			alert("hi");
+		});
+	</script>
+<% end %>
