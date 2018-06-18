@@ -18,6 +18,7 @@
 @import 'foundation-icons';
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700');
 $font-stack: 'IBM Plex Sans',sans-serif;
+$primary-color: #eb3e29;
 
 a { color: #eb3e29;}
 .top-bar {
@@ -62,7 +63,7 @@ table thead tr th, table thead tr td {
     padding: 0.2rem 0.625rem 0.2rem 0.625rem;
     font-size: 0.875rem;
     font-weight: bold;
-    color: #eb3e29;
+    color: #000;
     text-transform: uppercase;
     letter-spacing: 0.045em;
 }
@@ -102,3 +103,5 @@ p.navbar-text.pull-right:hover {background-color:transparent;}
 h2.log, h2.sign {text-transform:uppercase;    font-family: $font-stack;}
 
 .login_content, .signup_content {padding:5% 0;}
+
+.product_name {font-size:12pt;font-weight:700;text-transform:uppercase;color:$primary-color;}

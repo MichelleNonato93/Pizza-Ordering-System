@@ -25,7 +25,7 @@
 	  <tbody>
 	  	<% Product.where(category: category.first).each do |product| %>
 			<tr>
-				<td><%= product.name %></td>
+				<td><span class="product_name"><strong><%= product.name %></strong></span><br/><%= product.description %></td>
 				<% product.variants.each do |variant| %>
 					<td>
 						<%= radio_button_tag("item_#{product.id}", "#{variant.id}", options = {}) %>
@@ -41,6 +41,8 @@
 	  </tbody>
 	</table>
 <% end %>
+
+
 
 <% content_for(:js_footer) do %>
 	<script>
