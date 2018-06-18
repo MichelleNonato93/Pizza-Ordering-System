@@ -1,19 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  get 'welcome/index'
-
-  devise_for :users
   root :to => "welcome#index"
+
+  get 'welcome/index'
+  devise_for :users, controllers: { registrations: "registrations" }
   get "/home/index", to: "home#index", as: "orderpage"
-
-
-  match '/cart', to: "orders#cart", as: "cart", via: [:get, :post]
+  get '/cart', to: "orders#cart", as: "cart"
+  get '/admin', to: "admin#index", as: "admin"
 
   resources :orders
-
-  # devise_for :users do
-  #   get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
-  # end
+  resources :order_items
 
   get "*path", to: redirect("/")
 end

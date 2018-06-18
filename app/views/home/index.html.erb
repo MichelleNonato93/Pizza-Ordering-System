@@ -1,7 +1,7 @@
 <section class="content_total">
 	<div class="row collapse">
 		<div class="columns large-3 small-3"><h5 class="h5_total">Total Purchase Order</h5></div>
-		<div class="columns large-3 small-3"><%= text_field_tag "running_total", "0", style: "font-size: 32px;" %></div>
+		<div class="columns large-3 small-3"><%= text_field_tag "running_total", @running_total, style: "font-size: 32px;" %></div>
 		<div class="columns large-4 small-3"><!-- --></div>
 		<div class="columns large-3 small-3"><%= link_to raw('<i class="fi fi-shopping-cart large"></i>') + " View Cart", cart_path %></div>
 	</div>
@@ -25,29 +25,52 @@
 	  <tbody>
 	  	<% Product.where(category: category.first).each do |product| %>
 			<tr>
-				<td><span class="product_name"><strong><%= product.name %></strong></span><br/><%= product.description %></td>
+				<%= form_for @order_item do |f| %>
+				<td><span class="product_name"><%= product.name %></span><br/><%= product.description %></td>
 				<% product.variants.each do |variant| %>
-					<td>
-						<%= radio_button_tag("item_#{product.id}", "#{variant.id}", options = {}) %>
+					<td class="radios">
+						<%= radio_button_tag("item", "#{variant.price}", options={}, class: "item", data: { product: product.id, variant: variant.id, amount: variant.price }) %>
 						<%= variant.price %>
 					</td>
 				<% end %>
-				<td><%= text_field_tag "qty_#{product.id}", "0", class: "qty" %></td>
-				<td><%= text_field_tag "subtotal_#{product.id}", "0", class: "subtotal" %></td>
-				<td><%= button_tag "Add" %></td>
+				<td><%= f.text_field "quantity", value: 0, class: "qty" %></td>
+				<td>
+					<%= f.text_field "total", value: 0, class: "subtotal" %>
+					<%= f.hidden_field "product_id", value: product.id %>
+					<%= f.hidden_field "variant_id", value: 0 %>
+				</td>
+				<td><%= f.submit "Add" , :class=> "button" %></td>
 				<td><%= button_tag "Remove" %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	  </tbody>
 	</table>
 <% end %>
 
-
-
 <% content_for(:js_footer) do %>
 	<script>
 		$(".qty").change(function(){
-			alert("hi");
+			var total = 0;
+			var amt = ($("input[name='item']:checked").val());
+			var product_id = $(this).parent().prev().children().data('product');
+			$(this).parent().siblings().find('#order_item_total').val(($(this).val() * amt));
 		});
+
+		$(".item").change(function(){
+			var total = 0;
+			var product_id = $(this).data('product');
+			$(this).parent().siblings().find('#order_item_quantity').val('1');
+			$(this).parent().siblings().find('#order_item_variant_id').val($(this).data('variant'));
+			var amt = ($("input[name='item']:checked").val());
+
+			if($(this).parent().siblings().find('#order_item_quantity').val()==0){
+				$(this).parent().siblings().find('#order_item_quantity').val(1);
+			}
+			var qty = ($(this).parent().siblings().find('#order_item_quantity').val());
+			$(this).parent().siblings().find('#order_item_total').val(qty * amt);
+		});
+
+
 	</script>
 <% end %>

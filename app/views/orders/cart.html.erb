@@ -1,7 +1,23 @@
-<% if current_order.present? %>
-	<% current_order.order_items.each do |item| %>
-		<%= item.variant.product.name %>: <%= item.variant.size %> - <%= item.variant %>
-	<% end %>
-<% else %>
-No items found
-<% end %>
+<div class="row content_block">
+	<div class="columns large-12">
+		<h2>Cart</h2>
+		<% if current_order.present? %>
+			<ul>
+				<% current_order.order_items.each do |item| %>
+				<div class="row">
+					<div class="columns large-3">
+						<li><%= item.variant.product.name %>: <%= item.variant.size %> - <%= item.variant.price %>
+					</div>
+					<div class="columns large-9">
+						<%= link_to "Remove", order_item_path(item), method: :delete, :class=> "button" %>
+					</div>
+				</div>
+
+					</li>
+				<% end %>
+			</ul>
+		<% else %>
+		No items found
+		<% end %>
+	</div>
+</div>

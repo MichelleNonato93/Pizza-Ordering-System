@@ -1,0 +1,25 @@
+<h2>Pending Orders</h2>
+
+<ul>
+<% @orders.each do |order| %>
+	<li>
+		<%= order.user.first_name %> <%= order.user.last_name %> 
+		<%= form_for order do |f| %>
+			<%= f.hidden_field :status, value: "approved" %>
+			<%= f.submit "Approve" %>
+		<% end %>
+
+		<%= form_for order do |f| %>
+			<%= f.hidden_field :status, value: "canceled" %>
+			<%= f.submit "Cancel" %>
+		<% end %>
+		<br/>
+		Cart Items:
+		<ul>
+			<% order.order_items.each do |item| %>
+				<li><%= item.variant.product.name %>: <%= item.variant.size %> - <%= item.variant.price %></li>
+			<% end %>
+		</ul>
+	</li>
+<% end %>
+</ul>
